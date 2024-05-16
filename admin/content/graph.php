@@ -2,10 +2,10 @@
 <div class="page-header">
     <h1>
         <i class="icon-signal"></i>
-        Graph
+        Gráficos
         <small>
             <i class="icon-double-angle-right"></i>
-            plot your sale stats
+            Plote suas vendas
         </small>
     </h1>
 </div><!-- /.page-header -->
@@ -15,17 +15,17 @@
             <div class="widget-header widget-header-flat">
 
                 <div class="widget-toolbar no-border">
-                    <label for="graphinterval">Interval:</label>
+                    <label for="graphinterval">Intervalo:</label>
                     <select id="graphinterval" onchange="setGraphInterval();" style="margin-right: 5px;">
                         <option value="86400000" selected="selected">Day</option>
-                        <option value="604800000">Week</option>
-                        <option value="1209600000">Fortnight</option>
-                        <option value="2629743833">Month</option>
-                        <option value="7889231500">3 Months</option>
-                        <option value="31556926000">Year</option>
+                        <option value="604800000">Semana</option>
+                        <option value="1209600000">Duas semanas</option>
+                        <option value="2629743833">Mês</option>
+                        <option value="7889231500">3 Meses</option>
+                        <option value="31556926000">Ano</option>
                     </select>
-                    <label>Range: <input type="text" style="width: 85px;" id="graphstime" onclick="$(this).blur();" /></label>
-                    <label>to <input type="text" style="width: 85px;" id="graphetime" onclick="$(this).blur();" /></label>
+                    <label>Intervalo: <input type="text" style="width: 85px;" id="graphstime" onclick="$(this).blur();" /></label>
+                    <label>até <input type="text" style="width: 85px;" id="graphetime" onclick="$(this).blur();" /></label>
                 </div>
             </div>
 
@@ -44,16 +44,16 @@
         <div class="widget-header widget-header-flat">
             <h4 class="lighter">
                 <i class="icon-signal"></i>
-                Add data sets:
+                Adicione bases de dados:
             </h4>
         </div>
         <div class="widget-body" style="text-align: center; padding-top: 10px;">
             <select id="datasetselect">
-                <option value="method">Payment Methods</option>
-                <option value="device">Device Takings</option>
-                <option value="location">Location Takings</option>
+                <option value="method">Meios de Pagamento</option>
+                <option value="device">Lançamentos por dispositivo</option>
+                <option value="location">Lançamentos por local</option>
             </select>
-            <button onclick="userLoadDataSet();" class="btn btn-sm btn-primary">Add</button>
+            <button onclick="userLoadDataSet();" class="btn btn-sm btn-primary">Novo</button>
         </div>
         </div>
     </div>
@@ -69,30 +69,30 @@
 
             <ol id="datasets" class="ddlist" style="margin-left: 0; padding-left: 0;">
                 <li class="dd-item">
-                    <div class="dd2-content">Sales Total
+                    <div class="dd2-content">Total de vendas
                         <button style="float: right; margin-top: -3px;" onclick="removeUIData('sales', $(this));"
-                                class="btn btn-xs btn-danger">Remove
+                                class="btn btn-xs btn-danger">Excluir
                         </button>
                     </div>
                 </li>
                 <li class="dd-item">
-                    <div class="dd2-content">Refund Total
+                    <div class="dd2-content">Estornos totais
                         <button style="float: right; margin-top: -3px;" onclick="removeUIData('refunds', $(this));"
-                                class="btn btn-xs btn-danger">Remove
+                                class="btn btn-xs btn-danger">Excluir
                         </button>
                     </div>
                 </li>
                 <li class="dd-item">
-                    <div class="dd2-content">Revenue
+                    <div class="dd2-content">Entrada
                         <button style="float: right; margin-top: -3px;" onclick="removeUIData('takings', $(this));"
-                                class="btn btn-xs btn-danger">Remove
+                                class="btn btn-xs btn-danger">Excluir
                         </button>
                     </div>
                 </li>
                 <li class="dd-item">
-                    <div class="dd2-content">Cost
+                    <div class="dd2-content">Custo
                         <button style="float: right; margin-top: -3px;" onclick="removeUIData('cost', $(this));"
-                                class="btn btn-xs btn-danger">Remove
+                                class="btn btn-xs btn-danger">Excluir
                         </button>
                     </div>
                 </li>

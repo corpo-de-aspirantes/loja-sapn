@@ -1,84 +1,123 @@
-# WallacePOS (sistema da loja da SAPN)
 
-WallacePOS usa o poder da web moderna para fornecer um sistema de vendas fácil de usar e extensível.
+### Note: WallacePOS is not longer actively maintained. If you would like to become a maintainer of this project please let me know.
 
-Utilizado nas lojas da SAPN e do GVEN
+# WallacePOS
+## An intuitive & modern web based POS system
+![logo](https://wallacepos.com/images/wallacepos_logo_600.png)
 
-## Pré-requisitos do servidor
+WallacePOS uses the power of the modern web to provide an easy to use & extensible POS system.
 
-O sistema requer:
+It supports standard POS hardware including receipt printers, cashdraws and barcode scanners.
 
-1. Um servidor Lamp com versão PHP>=5.4, extensões PHP cURL e GD e versão Apache>=2.4.7 com módulos reescritos, proxy_http e proxy_wstunnel.
+With a rich administration dashboard and reporting features, WallacePOS brings benefits to managers and staff alike.
 
-     - Você pode habilitar os módulos digitando o seguinte em seu terminal
+Take your business into the cloud with WallacePOS!
 
-     ```
-         sudo a2enmod proxy_http proxy_wstunnel reescrever
-         sudo apt-get install php5-curl php5-gd
-         sudo serviço apache2 reiniciar
-     ```
+To find out more about WallacePOS, head over to [wallacepos.com](https://wallacepos.com)
 
-     - O seguinte trecho de host virtual em sua configuração do Apache, substitua %*% por seus valores e modifique de acordo com suas necessidades.
+If you find that WallacePOS is the perfect companion for your business, please donate to support further development.
+
+[![Donate to WallacePOS](https://www.paypalobjects.com/en_AU/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=783UMXCNZGL68)
+
+## Server Prerequisites
+
+WallacePOS requires:
+
+1. A Lamp server with PHP version>=5.4, PHP cURL & GD extensions and Apache version>=2.4.7 with modules rewrite, proxy_http and proxy_wstunnel.
+
+    - You can enable the modules by typing the following in your terminal
+
+    ```
+        sudo a2enmod proxy_http proxy_wstunnel rewrite
+        sudo apt-get install php5-curl php5-gd
+        sudo service apache2 restart
+    ```
+
+    - The following virtual host snippet in your apache config, replace %*% with your values and modify to your needs.
 
 
-     ```
-         <HostVirtual *:443>
-              DocumentRoot %/seu_diretório_de_instalação%
-              Nome do servidor% seu.servidor.fqdn%
+    ```
+        <VirtualHost *:443>
+             DocumentRoot %/your_install_dir%
+             ServerName %your.server.fqdn%
 
-              Log de erros ${APACHE_LOG_DIR}/error.log
-              CustomLog ${APACHE_LOG_DIR}/access.log combinado
+             ErrorLog ${APACHE_LOG_DIR}/error.log
+             CustomLog ${APACHE_LOG_DIR}/access.log combined
 
-              Motor SSL ativado
-                  SSLCipherSuite !ADH:!DSS:!RC4:HIGH:+3DES:+RC4
-                  Protocolo SSL tudo -SSLv2 -SSLv3
-                  SSLCertificateFile %certificate_location%
-                  SSLCertificateKeyFile %key_location%
-                  SSLCertificateChainFile %cert_chain_location%
+             SSLEngine on
+                 SSLCipherSuite !ADH:!DSS:!RC4:HIGH:+3DES:+RC4
+                 SSLProtocol all -SSLv2 -SSLv3
+                 SSLCertificateFile %certificate_location%
+                 SSLCertificateKeyFile %key_location%
+                 SSLCertificateChainFile %cert_chain_location%
 
-              <Diretório %/your_install_dir%>
-                 Permitir substituir tudo
-              </Diretório>
+             <Directory %/your_install_dir%>
+                AllowOverride all
+             </Directory>
 
-              #WSPROXYCONF
-              Solicitações de proxy desativadas
-              ProxyPreserveHost ativado
-              <Proxy *>
-                      Ordem negar, permitir
-                      Permitir de todos
-              </Proxy>
-              RewriteEngine ativado
-              Atualização RewriteCond %{HTTP:Connection} [NC]
-              RewriteRule /(.*) ws://localhost:8080/$1 [P,L]
-              ProxyPass /socket.io http://localhost:8080/socket.io/
-              ProxyPassReverse /socket.io http://localhost:8080/socket.io/
-              <Local /socket.io>
-                      Ordem permitir, negar
-                      Permitir de todos
-              </Local>
-         </VirtualHost>
-     ```
+             # WSPROXY CONF
+             ProxyRequests Off
+             ProxyPreserveHost On
+             <Proxy *>
+                     Order deny,allow
+                     Allow from all
+             </Proxy>
+             RewriteEngine On
+             RewriteCond %{HTTP:Connection} Upgrade [NC]
+             RewriteRule /(.*) ws://localhost:8080/$1 [P,L]
+             ProxyPass        /socket.io http://localhost:8080/socket.io/
+             ProxyPassReverse /socket.io http://localhost:8080/socket.io/
+             <Location /socket.io>
+                     Order allow,deny
+                     Allow from all
+             </Location>
+        </VirtualHost>
+    ```
 
-     Nota: Usar http simples não é recomendado.
+    Note: Using plain http is not recommended.
 
-2. Node.js instalado junto com a biblioteca socket.io
+2. Node.js installed along with the socket.io library
 
-     Para uma distribuição Debian:
+    For a Debian distro:
 
-     ```
-         sudo apt-get atualização
-         sudo apt-get install nodejs && apt-get install npm
-         cd %/seu_diretório_de_instalação%/api
-         sudo npm instalar soquete.io
-     ```
+    ```
+        sudo apt-get update
+        sudo apt-get install nodejs && apt-get install npm
+        cd %/your_install_dir%/api
+        sudo npm install socket.io
+    ```
 
-## Instalação e inicialização
+## Installation & Startup
 
-1. Clone a versão mais recente do sistema em %your_install_dir%, caso ainda não tenha feito isso.
-    O diretório de instalação deve ser o diretório raiz do seu documento Apache!
+1. Clone the latest WallacePOS release to %your_install_dir% if you haven't done so already.
+   The installation dir must be your Apache document root directory!
    
-2. Execute `composer install` em seu diretório de instalação para atualizar as dependências do PHP (talvez seja necessário instalar o compositor primeiro).
+2. Run `composer install` in your install directory to update PHP dependencies (you may need to install composer first).
 
-3. Visite /installer no seu navegador e siga o assistente de instalação.
+3. Visit /installer in your browser & follow the installation wizard.
 
-4. Faça login no painel de administração em /admin, no menu vá para Configurações -> Utilitários e certifique-se de que o servidor de feed foi iniciado com sucesso.
+4. Login to the admin dashboard at /admin, from the menu go to Settings -> Utilities and make sure the feed server has been started successfully.
+
+## Deploying using dokku
+
+To deploy WallacePOS on dokku:
+
+1. Install the [dokku-apt](https://github.com/F4-Group/dokku-apt) plugin on your dokku host.
+
+2. Fork the WallacePOS to a PRIVATE repo (IMPORTANT), edit /library/wpos/.dbconfig.json and fill in your own values.
+
+    **OR**
+
+   Use my [dokku mysql plugin](https://github.com/micwallace/dokku-mysql-server-plugin) to create and link the database automagically.   
+
+3. Commit deploy in the usual manner.
+
+4. Setup persistent storage by running:
+
+   `dokku storage:mount %APP_NAME% /var/lib/dokku/data/storage/%APP_NAME%:/app/docs`
+   
+   WARINING: Failure to do so will lead to data loss during subsequent upgrades.
+
+5. Access /installer/?install from the web browser to install the database schema & templates
+
+6. Login to the admin dashboard at /admin using credentials admin:admin & change the default passwords in Settings -> Staff & Admins!

@@ -5,7 +5,7 @@ header("Access-Control-Allow-Origin: *");
     <img style="width: 200px; height: 80px;" src="/assets/images/receipt-logo.png"/><h3 class="smaller" style="margin-top: 5px;">Register an Account</h3>
     <table>
         <tr>
-            <td style="text-align: right;"><label>Name:&nbsp;</label></td>
+            <td style="text-align: right;"><label>Nome:&nbsp;</label></td>
             <td><input id="register_name" type="text"/><input id="custid" type="hidden"/></td>
         </tr>
         <tr>
@@ -13,39 +13,39 @@ header("Access-Control-Allow-Origin: *");
             <td><input id="register_email" type="text"/></td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>Phone:&nbsp;</label></td>
+            <td style="text-align: right;"><label>Telefone:&nbsp;</label></td>
             <td><input id="register_phone" type="text"/></td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>Mobile:&nbsp;</label></td>
+            <td style="text-align: right;"><label>Celular:&nbsp;</label></td>
             <td><input id="register_mobile" type="text"/></td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>Address:&nbsp;</label></td>
+            <td style="text-align: right;"><label>Endereço:&nbsp;</label></td>
             <td><input id="register_address" type="text"/></td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>Suburb:&nbsp;</label></td>
+            <td style="text-align: right;"><label>Bairro:&nbsp;</label></td>
             <td><input id="register_suburb" type="text"/></td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>Postcode:&nbsp;</label></td>
+            <td style="text-align: right;"><label>CEP:&nbsp;</label></td>
             <td><input id="register_postcode" type="text"/></td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>State:&nbsp;</label></td>
+            <td style="text-align: right;"><label>Estado:&nbsp;</label></td>
             <td><input id="register_state" type="text"/></td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>Country:&nbsp;</label></td>
+            <td style="text-align: right;"><label>País:&nbsp;</label></td>
             <td><input id="register_country" type="text"/></td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>Password:&nbsp;</label></td>
+            <td style="text-align: right;"><label>Senha:&nbsp;</label></td>
             <td><input id="register_pass" type="password"/></td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>Confirm Password:&nbsp;</label></td>
+            <td style="text-align: right;"><label>Confirmar Senha:&nbsp;</label></td>
             <td><input id="register_cpass" type="password"/></td>
         </tr>
         <tr>
