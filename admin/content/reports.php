@@ -1,36 +1,36 @@
 <!-- WallacePOS: Copyright (c) 2014 WallaceIT <micwallace@gmx.com> <https://www.gnu.org/licenses/lgpl.html> -->
 <div class="page-header">
     <h1 class="inline">
-        Reports
+        SITREP
     </h1>
     <select id="reptype" onchange="generateReport();" style="vertical-align: middle; margin-right: 20px; margin-bottom: 5px;">
-        <option value="stats/general">Summary</option>
-        <option value="stats/takings">Takings Count</option>
-        <option value="stats/itemselling">Item Sales</option>
-        <option value="stats/categoryselling">Category Sales</option>
-        <option value="stats/supplyselling">Supplier Sales</option>
-        <option value="stats/stock">Current Stock</option>
-        <option value="stats/devices">Device Takings</option>
-        <option value="stats/locations">Location Takings</option>
-        <option value="stats/users">User Takings</option>
-        <option value="stats/tax">Tax Breakdown</option>
+        <option value="stats/general">Resumo</option>
+        <option value="stats/takings">Meios de pagamento</option>
+        <option value="stats/itemselling">Itens</option>
+        <option value="stats/categoryselling">Categorias</option>
+        <option value="stats/supplyselling">Fornecedores</option>
+        <option value="stats/stock">Estoque atual</option>
+        <option value="stats/devices">Dispositivos</option>
+        <option value="stats/locations">Locais</option>
+        <option value="stats/users">Usuários</option>
+        <option value="stats/tax">Taxas</option>
     </select>
     <div style="display: inline-block; vertical-align:middle; margin-right: 20px;">
-        <label>Transactions
+        <label>Transações
         <select id="reptranstype" onchange="generateReport();" style="vertical-align: middle; margin-right: 20px; margin-bottom: 5px;">
-            <option value="all">All Sales</option>
-            <option value="sale">POS Sales</option>
-            <option value="invoice">Invoices</option>
+            <option value="all">Todas</option>
+            <option value="sale">Vendas</option>
+            <option value="invoice">Pedidos</option>
         </select>
         </label>
     </div>
     <div style="display: inline-block; vertical-align:middle; margin-right: 20px;">
-        <label>Range: <input type="text" style="width: 85px;" id="repstime" onclick="$(this).blur();" /></label>
-        <label>to <input type="text" style="width: 85px;" id="repetime" onclick="$(this).blur();" /></label>
+        <label>Período: <input type="text" style="width: 85px;" id="repstime" onclick="$(this).blur();" /></label>
+        <label>para <input type="text" style="width: 85px;" id="repetime" onclick="$(this).blur();" /></label>
     </div>
     <div style="display: inline-block; vertical-align: top;">
-        <button onclick="printCurrentReport();" class="btn btn-primary btn-sm"><i class="icon-print align-top bigger-125"></i>Print</button>&nbsp;
-        <button class="btn btn-success btn-sm" onclick="exportCurrentReport();"><i class="icon-cloud-download align-top bigger-125"></i>Export CSV</button>
+        <button onclick="printCurrentReport();" class="btn btn-primary btn-sm"><i class="icon-print align-top bigger-125"></i>Imprimir</button>&nbsp;
+        <button class="btn btn-success btn-sm" onclick="exportCurrentReport();"><i class="icon-cloud-download align-top bigger-125"></i>Exportar CSV</button>
     </div>
 </div><!-- /.page-header -->
 <div class="row">
@@ -61,28 +61,28 @@
                 populateSummary();
                 break;
             case "stats/takings":
-                populateTakings("Takings Count", "Method");
+                populateTakings("Recebimentos", "Method");
                 break;
             case "stats/itemselling":
-                populateItems("Item Sales");
+                populateItems("Vendas por Item");
                 break;
             case "stats/categoryselling":
-                populateSelling("Category Sales");
+                populateSelling("Vendas por Categoria");
                 break;
             case "stats/supplyselling":
-                populateSelling("Supplier Sales");
+                populateSelling("Vendas por Fornecedor");
                 break;
             case "stats/stock":
                 populateStock();
                 break;
             case "stats/devices":
-                populateTakings("Device Takings", "Device Name");
+                populateTakings("Recebimentos por Dispositivo", "Device Name");
                 break;
             case "stats/locations":
-                populateTakings("Location Takings", "Location Name");
+                populateTakings("Recebimentos por local", "Location Name");
                 break;
             case "stats/users":
-                populateTakings("User Takings", "User Name");
+                populateTakings("Lançamentos por usuário", "Username");
                 break;
             case "stats/tax":
                 populateTax();
@@ -103,7 +103,7 @@
     }
 
     function populateSummary(){
-        var html = getReportHeader("Summary");
+        var html = getReportHeader("Resumo");
         html += "<table class='table table-stripped' style='width: 100%'><thead><tr><td></td><td># Sales</td><td>Total</td></tr></thead><tbody>";
         html += '<tr><td><a onclick="WPOS.transactions.openTransactionList(\''+repdata.salerefs+'\');">Sales</a></td><td>'+repdata.salenum+'</td><td>'+WPOS.util.currencyFormat(repdata.saletotal)+'</td></tr>';
         html += '<tr><td><a onclick="WPOS.transactions.openTransactionList(\''+repdata.refundrefs+'\');">Refunds</a></td><td>'+repdata.refundnum+'</td><td>'+WPOS.util.currencyFormat(repdata.refundtotal)+'</td></tr>';
@@ -118,7 +118,7 @@
 
     function populateTakings(repname, colname){
         var html = getReportHeader(repname);
-        html += "<table class='table table-stripped' style='width: 100%'><thead><tr><td>"+colname+"</td><td># Sales</td><td>Takings</td><td># Refunds</td><td>Refunds</td><td>Balance</td></tr></thead><tbody>";
+        html += "<table class='table table-stripped' style='width: 100%'><thead><tr><td>"+colname+"</td><td>Num Vendas</td><td>Entrada</td><td>Num Reembolsos</td><td>Reembolsos</td><td>Balanço</td></tr></thead><tbody>";
         var rowdata;
         for (var i in repdata){
             rowdata = repdata[i];
@@ -159,7 +159,7 @@
     }
 
     function populateTax(){
-        var html = getReportHeader("Tax Breakdown");
+        var html = getReportHeader("Taxas");
         html += "<table class='table table-stripped' style='width: 100%'><thead><tr><td>Name</td><td># Items</td><td>Sale Subtotal</td><td>Tax</td><td>Refund Subtotal</td><td>Refund Tax</td><td>Total Tax</td></tr></thead><tbody>";
         var rowdata;
         for (var i in repdata){

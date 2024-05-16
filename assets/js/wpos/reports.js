@@ -358,7 +358,7 @@ function WPOSReports() {
     }
 
     this.generateTakingsReport = function () {
-        var html = reportheader("Takings Count Report") + '<table style="width:100%;" class="table table-stripped"><thead><tr><th>Method</th><th># Payments</th><th>Takings</th><th># Refunds</th><th>Refunds</th><th>Balance</th></tr></thead><tbody>';
+        var html = reportheader("Por valor") + '<table style="width:100%;" class="table table-stripped"><thead><tr><th>Method</th><th># Payments</th><th>Takings</th><th># Refunds</th><th>Refunds</th><th>Balance</th></tr></thead><tbody>';
         var methdenoms = curstats.methodtotals;
         for (var method in methdenoms) {
             html += '<tr><td>' + WPOS.util.capFirstLetter(method) + '</td><td>' + methdenoms[method].qty + '</td><td>' + WPOS.util.currencyFormat(methdenoms[method].amount) + '</td><td>' + methdenoms[method].refqty + '</td><td>' + WPOS.util.currencyFormat(methdenoms[method].refamount) + '</td><td>' + WPOS.util.currencyFormat((parseFloat(methdenoms[method].amount) - parseFloat(methdenoms[method].refamount)).toFixed(2)) + '</td></tr>';
@@ -369,7 +369,7 @@ function WPOSReports() {
     };
 
     this.generateWhatsSellingReport = function () {
-        var html = reportheader("What's Selling Report") + '<table style="width:100%;" class="table table-stripped"><thead><tr><th>Item</th><th># Sold</th><th>Total</th></tr></thead><tbody>';
+        var html = reportheader("Por produtos") + '<table style="width:100%;" class="table table-stripped"><thead><tr><th>Item</th><th># Sold</th><th>Total</th></tr></thead><tbody>';
         var stats = getWhatsSellingStats();
         var item;
         for (var id in stats.items) {
@@ -383,7 +383,7 @@ function WPOSReports() {
     };
 
     this.generateSellerReport = function () {
-        var html = reportheader("Seller Takings") + '<table style="width:100%;" class="table table-stripped"><thead><tr><th>User</th><th>Sales</th><th>Voids</th><th>Refunds</th><th>Balance</th></tr></thead><tbody>';
+        var html = reportheader("Por vendedor") + '<table style="width:100%;" class="table table-stripped"><thead><tr><th>User</th><th>Sales</th><th>Voids</th><th>Refunds</th><th>Balance</th></tr></thead><tbody>';
         var stats = getSellerStats();
         var item;
         var users = WPOS.getConfigTable().users;

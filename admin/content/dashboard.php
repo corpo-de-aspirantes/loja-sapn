@@ -1,10 +1,10 @@
 <!-- WallacePOS: Copyright (c) 2014 WallaceIT <micwallace@gmx.com> <https://www.gnu.org/licenses/lgpl.html> -->
 <div class="page-header">
     <h1>
-        Dashboard
+        Painel
         <small>
             <i class="icon-double-angle-right"></i>
-            overview &amp; stats
+            Visão Geral &amp; estatísticas
         </small>
     </h1>
 </div><!-- /.page-header -->
@@ -18,7 +18,7 @@
     <div class="widget-header widget-header-flat">
         <h4 class="lighter">
             <i class="icon-dollar"></i>
-            Today's Takings
+            Receita de hoje
         </h4>
     </div>
     <div class="widget-body" style="padding-top: 10px; text-align: center;">
@@ -29,7 +29,7 @@
 
         <div class="infobox-data">
             <span id="salenum" class="infobox-data-number">-</span>
-            <div class="infobox-content">Sales</div>
+            <div class="infobox-content">Vendas</div>
         </div>
         <div id="saletotal" class="stat stat-success">-</div>
     </div>
@@ -41,7 +41,7 @@
 
         <div class="infobox-data">
             <span id="refundnum" class="infobox-data-number">-</span>
-            <div class="infobox-content">Refunds</div>
+            <div class="infobox-content">Reembolsos</div>
         </div>
 
         <div id="refundtotal" class="stat stat-important">-</div>
@@ -54,7 +54,7 @@
 
         <div class="infobox-data">
             <span id="voidnum" class="infobox-data-number">-</span>
-            <div class="infobox-content">Voids</div>
+            <div class="infobox-content">Cancelamentos</div>
         </div>
         <div id="voidtotal" class="stat stat-important">-</div>
     </div>
@@ -66,7 +66,7 @@
 
         <div class="infobox-data">
             <span id="takings" class="infobox-data-number">-</span>
-            <div class="infobox-content">Revenue</div>
+            <div class="infobox-content">Receita</div>
         </div>
     </div><br/>
 
@@ -77,7 +77,7 @@
 
         <div class="infobox-data">
             <span id="cost" class="infobox-data-number">-</span>
-            <div class="infobox-content">Cost</div>
+            <div class="infobox-content">Custo</div>
         </div>
     </div>
 
@@ -88,7 +88,7 @@
 
         <div class="infobox-data">
             <span id="profit" class="infobox-data-number">-</span>
-            <div class="infobox-content">Profit</div>
+            <div class="infobox-content">Lucro</div>
         </div>
     </div>
 
@@ -163,7 +163,7 @@
             <div class="widget-header widget-header-flat">
                 <h4 class="lighter">
                     <i class="icon-star orange"></i>
-                    Popular Items This Month
+                    Itens Populares Este Mês
                 </h4>
             </div>
 
@@ -174,12 +174,12 @@
                         <tr>
                             <th>
                                 <i class="icon-caret-right blue"></i>
-                                Name
+                                Nome
                             </th>
 
                             <th>
                                 <i class="icon-caret-right blue"></i>
-                                Qty Sold
+                                Qtd Vendida
                             </th>
 
                             <th>
@@ -200,7 +200,7 @@
 
     <div class="vspace-sm"></div>
 
-    <div class="col-sm-7">
+      <div class="col-sm-7">
         <div class="widget-box transparent">
             <div class="widget-header widget-header-flat">
                 <h4 class="lighter">
